@@ -1,47 +1,18 @@
-<%= form_with(model: invoice) do |form| %>
-  <% if invoice.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
 
-      <ul>
-        <% invoice.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for(@invoice) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div>
-    <%= form.label :client_id, style: "display: block" %>
-    <%= form.text_field :client_id %>
+  <div class="form-inputs">
+    <%= f.association :client %>
+    <%= f.input :creation_date %>
+    <%= f.input :pay_until %>
+    <%= f.input :vat_method %>
+    <%= f.input :discount %>
+    <%= f.input :extra_stuff %>
   </div>
 
-  <div>
-    <%= form.label :creation_date, style: "display: block" %>
-    <%= form.date_field :creation_date %>
-  </div>
-
-  <div>
-    <%= form.label :pay_until, style: "display: block" %>
-    <%= form.date_field :pay_until %>
-  </div>
-
-  <div>
-    <%= form.label :vat_method, style: "display: block" %>
-    <%= form.text_field :vat_method %>
-  </div>
-
-  <div>
-    <%= form.label :discount, style: "display: block" %>
-    <%= form.text_field :discount %>
-  </div>
-
-  <div>
-    <%= form.label :extra_stuff, style: "display: block" %>
-    <%= form.text_field :extra_stuff %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-success' %>
   </div>
 <% end %>
