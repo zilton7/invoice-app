@@ -7,7 +7,7 @@
     <%= f.association :client %>
     <%= f.input :creation_date %>
     <%= f.input :pay_until %>
-    <%= f.input :vat_method %>
+    <%= f.input :include_vat, as: :boolean %>
     <%= f.input :discount %>
     <%= f.input :extra_stuff %>
   </div>
