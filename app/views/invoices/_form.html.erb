@@ -9,6 +9,16 @@
     <%= f.input :pay_until %>
     <%= f.input :include_vat, as: :boolean %>
     <%= f.input :discount %>
+
+    <button id="addService">Add service</button>
+    <%= f.simple_fields_for :services do |s| %>
+      <div id="fieldsetContainer">
+        <fieldset id="0">
+          <%= s.input :name %>
+        </fieldset>
+      </div>
+    <% end %>
+
     <%= f.input :written_by, as: :string %>
     <%= f.input :notes %>
   </div>
@@ -17,3 +27,23 @@
     <%= f.button :submit, class: 'btn btn-success' %>
   </div>
 <% end %>
+
+
+<script>
+  const createButton = document.getElementById("addService");
+  createButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const lastId = document.querySelector("#fieldsetContainer").lastElementChild.id;
+    const newId = parseInt(lastId, 10) + 1;
+    const delLink = `<a id='${newId}' class='btn btn-sm btn-danger'>DEL</a>`
+    let newFieldset = document.querySelector("[id='0']").outerHTML.replace(/0/g, newId);
+    newFieldset = "<div>" + (newFieldset += delLink) + "</div>"
+    document.querySelector("#fieldsetContainer").insertAdjacentHTML("beforeend", newFieldset);
+  });
+
+  document.body.addEventListener("click", (e) => {
+    if (e.target.nodeName === "A" && e.target.parentNode.previousElementSibling) {
+      e.target.parentNode.remove();
+    }
+  });
+</script>

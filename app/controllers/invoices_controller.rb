@@ -3,7 +3,10 @@ class InvoicesController < ApplicationController
 
   # GET /invoices or /invoices.json
   def index
-    @invoices = Invoice.all
+    # @invoices = Invoice.all
+
+    render json: Invoice.all.order('created_at DESC').includes(:services).to_json(only: [:id],
+                                                                                  include: [services: { only: :name }])
   end
 
   # GET /invoices/1 or /invoices/1.json
@@ -12,6 +15,7 @@ class InvoicesController < ApplicationController
   # GET /invoices/new
   def new
     @invoice = Invoice.new
+    @invoice.services.build
   end
 
   # GET /invoices/1/edit
@@ -64,6 +68,7 @@ class InvoicesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def invoice_params
-    params.require(:invoice).permit(:client_id, :creation_date, :pay_until, :include_vat, :discount, :written_by, :notes)
+    params.require(:invoice).permit(:client_id, :creation_date, :pay_until, :include_vat, :discount, :written_by,
+                                    :notes, services_attributes: [:name])
   end
 end
