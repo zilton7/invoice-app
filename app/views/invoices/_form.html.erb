@@ -10,14 +10,21 @@
     <%= f.input :include_vat, as: :boolean %>
     <%= f.input :discount %>
 
-    <button id="addService">Add service</button>
-    <%= f.simple_fields_for :services do |s| %>
+    <%= f.simple_fields_for :services, html: { class: } do |s| %>
       <div id="fieldsetContainer">
-        <fieldset id="0">
-          <%= s.input :name %>
-        </fieldset>
+          <fieldset id="0" class="row">
+            <%= s.input :name, wrapper_html: { class: 'col-5' } %>
+            <%= s.input :unit, collection: Service.units.symbolize_keys.keys, include_blank: false, wrapper_html: { class: 'col-2' } %>
+            <%= s.input :amount, wrapper_html: { class: 'col-1' } %>
+            <%= s.input :price, label: 'Price per unit', wrapper_html: { class: 'col-1' } %>
+            <%= s.input :vat, wrapper_html: { class: 'col-2' } %>
+            <%= s.input :total, wrapper_html: { class: 'col-1' } %>
+          </fieldset>
       </div>
     <% end %>
+    <p>Total: </p><p id="total"></p>
+
+    <button id="addService">Add line</button>
 
     <%= f.input :written_by, as: :string %>
     <%= f.input :notes %>
@@ -46,4 +53,22 @@
       e.target.parentNode.remove();
     }
   });
+
+  document.body.addEventListener("change", (e) => {
+    if (e.target.name.endsWith('[price]') || e.target.name.endsWith('[amount]')){
+      let target_name = e.target.name.replace(/\[[^\][]*]$/, '')
+      let price = document.getElementsByName(target_name + '[price]')[0].value;
+      let amount = document.getElementsByName(target_name + '[amount]')[0].value;
+      let result = amount * price;
+      document.getElementsByName(target_name + '[total]')[0].value = result;
+
+      const all_total_elements = document.querySelectorAll("[name$='[total]']");
+      let res = 0
+      all_total_elements.forEach(element => {
+        res += parseInt(element.value)
+      });
+
+      document.getElementById('total').innerHTML = res;
+    }
+  })
 </script>
