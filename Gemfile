@@ -71,3 +71,9 @@ end
 gem "simple_form", "~> 5.1"
 
 gem "country_select", "~> 8.0"
+
+gem "prawn-rails", "~> 1.4"
+
+gem "matrix", "~> 0.4.2"
+
+gem "prawn-table", "~> 0.2.2"

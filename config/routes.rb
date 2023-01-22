@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :clients
-  resources :invoices
+
+  resources :invoices do
+    member do
+      get :download, to: 'invoices#download'
+    end
+  end
 
   resources :services, only: [], param: :index do
     member do

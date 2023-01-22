@@ -1,5 +1,5 @@
 class ServicesController < ApplicationController
-  before_action :setup_service
+  before_action :set_service
 
   def new; end
 
@@ -7,7 +7,7 @@ class ServicesController < ApplicationController
 
   private
 
-  def setup_service
+  def set_service
     @invoice = Invoice.new(services: [Service.new])
   end
 end
