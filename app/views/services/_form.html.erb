@@ -1,9 +1,27 @@
 <%= turbo_frame_tag "service_#{f.index}" do %>
   <%= f.hidden_field :id %>
 
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class="row">
+    <div class="col">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="col">
+      <%= f.label :unit %>
+      <%= f.input_field :unit, collection: Service.units.symbolize_keys.keys, include_blank: false %>
+    </div>
+    <div class="col">
+      <%= f.label :price %>
+      <%= f.text_field :price %>
+    </div>
+    <div class="col">
+      <%= f.label :amount %>
+      <%= f.text_field :amount %>
+    </div>
+    <div class="col">
+      <%= f.label :vat %>
+      <%= f.text_field :vat %>
+    </div>
   </div>
 
   <%= f.submit "destroy service", 

@@ -1,0 +1,15 @@
+<%= fields model: @invoice do |f| %>
+  <%= f.fields_for :services, child_index: params[:index] do |service_form| %>
+    <%= turbo_stream.replace "add-service" do %>
+      <%= f.submit "Add service", 
+            formaction: service_path(service_form.index.to_i + 1), 
+            formmethod: :post, 
+            formnovalidate: true, 
+            id: "add-service" %>
+    <% end %>
+
+    <%= turbo_stream.append "services" do %>
+      <%= render "form", f: service_form %>
+    <% end %>
+  <% end %>
+<% end %>

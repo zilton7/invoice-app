@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :services, only: [], param: :index do
     member do
       delete '(:id)' => 'services#destroy', as: ''
+      post '/' => 'services#create'
     end
   end
-  
 end

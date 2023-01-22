@@ -16,9 +16,10 @@
       <% end %>
     </div>
 
-    <p>Total: </p><p id="total"></p>
+    <%= f.submit "Add service", formaction: service_path(@invoice.services.size), 
+      formmethod: :post,  formnovalidate: true, id: "add-service" %>
 
-    <button id="addService">Add line</button>
+    <p>Total: </p><p id="total"></p>
 
     <%= f.input :written_by, as: :string %>
     <%= f.input :notes %>
