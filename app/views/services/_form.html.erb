@@ -1,18 +1,14 @@
+<%= turbo_frame_tag "service_#{f.index}" do %>
+  <%= f.hidden_field :id %>
 
-<%= simple_form_for(@service) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :unit, collection: Service.unit.keys %>
-    <%= f.input :amount %>
-    <%= f.input :price %>
-    <%= f.input :vat %>
-    <%= f.association :invoice %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <%= f.submit "destroy service", 
+        formaction: service_path(f.index, f.object.id), 
+        formmethod: :delete, 
+        formnovalidate: true, 
+        data: { turbo_frame: "service_#{f.index}" } %>
 <% end %>

@@ -10,18 +10,12 @@
     <%= f.input :include_vat, as: :boolean %>
     <%= f.input :discount %>
 
-    <%= f.simple_fields_for :services, html: { class: } do |s| %>
-      <div id="fieldsetContainer">
-          <fieldset id="0" class="row">
-            <%= s.input :name, wrapper_html: { class: 'col-5' } %>
-            <%= s.input :unit, collection: Service.units.symbolize_keys.keys, include_blank: false, wrapper_html: { class: 'col-2' } %>
-            <%= s.input :amount, wrapper_html: { class: 'col-1' } %>
-            <%= s.input :price, label: 'Price per unit', wrapper_html: { class: 'col-1' } %>
-            <%= s.input :vat, wrapper_html: { class: 'col-2' } %>
-            <%= s.input :total, wrapper_html: { class: 'col-1' } %>
-          </fieldset>
-      </div>
-    <% end %>
+    <div id="services">
+      <%= f.fields_for :services do |service_form| %>
+        <%= render "services/form", f: service_form %>
+      <% end %>
+    </div>
+
     <p>Total: </p><p id="total"></p>
 
     <button id="addService">Add line</button>

@@ -1,0 +1,8 @@
+<%= fields model: @invoice do |form| %>
+  <%= form.fields_for :services, child_index: params[:index] do |service_form| %>
+    <%= turbo_frame_tag "service_#{service_form.index}" do %>
+      <%= service_form.hidden_field :id, value: params[:id] %>
+      <%= service_form.hidden_field :_destroy, value: true %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   resources :clients
   resources :invoices
-  resources :services
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :services, only: [], param: :index do
+    member do
+      delete '(:id)' => 'services#destroy', as: ''
+    end
+  end
+  
 end
