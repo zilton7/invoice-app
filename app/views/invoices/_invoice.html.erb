@@ -1,18 +1,23 @@
-<div id="<%= dom_id invoice %>">
-  <p>
-    <strong>Client:</strong>
-    <%= invoice.client_id %>
-  </p>
+<div class="container" id="<%= dom_id invoice %>">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col text-center">
+      <p>
+        <strong>Client:</strong>
+        <%= invoice.client_id %>
+      </p>
 
-  <p>
-    <strong>Creation date:</strong>
-    <%= invoice.creation_date %>
-  </p>
+      <p>
+        <strong>Creation date:</strong>
+        <%= invoice.creation_date %>
+      </p>
 
-  <p>
-    <strong>Pay until:</strong>
-    <%= invoice.pay_until %>
-  </p>
+      <p>
+        <strong>Pay until:</strong>
+        <%= invoice.pay_until %>
+      </p>
+    </div>
+  </div>
 
   <p>
     <strong>Include VAT:</strong>
@@ -24,9 +29,18 @@
     <%= invoice.discount %>
   </p>
 
-  <p>
-    <strong>Extra stuff:</strong>
-    <%= invoice.extra_stuff %>
-  </p>
+  <% invoice.services.each.with_index do |service, index| %>
+    <table class="table">
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Service name</th>
+      <th scope="col">Unit</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Price per Unit</th>
+      <th scope="col">Total</th>
+    </tr>
+    <%= render service, index: %>
+    </table>
+  <% end %>
 
 </div>

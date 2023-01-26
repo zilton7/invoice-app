@@ -1,32 +1,27 @@
 <div id="<%= dom_id service %>">
-  <p>
-    <strong>Name:</strong>
-    <%= service.name %>
-  </p>
+  <tr>
+    <td>
+      <%= index + 1 %>
+    </td>
 
-  <p>
-    <strong>Unit:</strong>
-    <%= service.unit %>
-  </p>
+    <td>
+      <%= service.name %>
+    </td>
 
-  <p>
-    <strong>Amount:</strong>
-    <%= service.amount %>
-  </p>
+    <td>
+      <%= service.unit %>
+    </td>
 
-  <p>
-    <strong>Price:</strong>
-    <%= service.price %>
-  </p>
+    <td>
+      <%= service.amount %>
+    </td>
 
-  <p>
-    <strong>Vat:</strong>
-    <%= service.vat %>
-  </p>
+    <td>
+      <%= service.price %>
+    </td>
 
-  <p>
-    <strong>Invoice:</strong>
-    <%= service.invoice_id %>
-  </p>
-
+    <td>
+      <%= service.vat %>
+    </td>
+  </tr>
 </div>
