@@ -1,4 +1,6 @@
-<%= simple_form_for(@service) do |f| %>
+<%= turbo_frame_tag "service_#{f.index}" do %>
+  <%= f.hidden_field :id %>
+
   <div class="row">
     <div class="col">
       <%= f.input :name %>
@@ -16,4 +18,10 @@
       <%= f.input :vat %>
     </div>
   </div>
+
+  <%= f.submit "destroy service", 
+        formaction: service_path(f.index, f.object.id), 
+        formmethod: :delete, 
+        formnovalidate: true, 
+        data: { turbo_frame: "service_#{f.index}" } %>
 <% end %>

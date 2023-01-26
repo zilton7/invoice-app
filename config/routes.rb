@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :clients
 
   resources :invoices do
+    resources :services, only: %i[edit]
     member do
       get :download, to: 'invoices#download'
     end

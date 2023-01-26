@@ -1,27 +1,27 @@
-<div id="<%= dom_id service %>">
-  <tr>
-    <td>
-      <%= index + 1 %>
-    </td>
+    <div class="row">
+      <span class="col-1 text-center border">
+        <%= index + 1 %>
+      </span>
 
-    <td>
-      <%= service.name %>
-    </td>
+      <span class="col-6 text-center border">
+        <%= service.name %>
+      </span>
 
-    <td>
-      <%= service.unit %>
-    </td>
+      <span class="col-1 text-center border">
+        <%= service.unit %>
+      </span>
 
-    <td>
-      <%= service.amount %>
-    </td>
+      <span class="col-1 text-center border">
+        <%= service.amount %>
+      </span>
 
-    <td>
-      <%= service.price %>
-    </td>
+      <span class="col-1 text-center border">
+        <%= service.price %>
+      </span>
 
-    <td>
-      <%= service.vat %>
-    </td>
-  </tr>
-</div>
+      <span class="col-1 text-center border">
+        <%= service.vat %>
+      </span>
+
+      <span class="col-1 text-center"><%= link_to 'Edit', edit_invoice_service_path(service.invoice, service) %></span>
+    </div>

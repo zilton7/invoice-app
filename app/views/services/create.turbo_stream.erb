@@ -9,7 +9,7 @@
     <% end %>
 
     <%= turbo_stream.append "services" do %>
-      <%= render "form", f: service_form %>
+      <%= render "appendable_form", f: service_form %>
     <% end %>
   <% end %>
 <% end %>

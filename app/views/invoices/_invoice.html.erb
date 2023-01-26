@@ -29,18 +29,19 @@
     <%= invoice.discount %>
   </p>
 
-  <% invoice.services.each.with_index do |service, index| %>
-    <table class="table">
-    <tr>
-      <th scope="col">No</th>
-      <th scope="col">Service name</th>
-      <th scope="col">Unit</th>
-      <th scope="col">Amount</th>
-      <th scope="col">Price per Unit</th>
-      <th scope="col">Total</th>
-    </tr>
-    <%= render service, index: %>
-    </table>
-  <% end %>
-
+    <div>
+      <div class="row">
+        <span class="col-1 text-center border">No</span>
+        <span class="col-6 text-center border">Service name</span>
+        <span class="col-1 text-center border">Unit</span>
+        <span class="col-1 text-center border">Amount</span>
+        <span class="col-1 text-center border">Price/Unit</span>
+        <span class="col-1 text-center border">Total</span>
+      </div>
+      <% invoice.services.each.with_index do |service, index| %>
+        <%= turbo_frame_tag dom_id(service) do %>
+          <%= render service, index: %>
+        <% end %>
+      <% end %>
+    </div>
 </div>
