@@ -12,7 +12,7 @@
 
     <div id="services">
       <%= f.simple_fields_for :services do |service_form| %>
-        <%= render "services/form", f: service_form %>
+        <%= render "services/appendable_form", service_form:  %>
       <% end %>
     </div>
 

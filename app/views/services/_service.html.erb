@@ -1,9 +1,9 @@
     <div class="row">
-      <span class="col-1 text-center border">
+      <span class="col-1 text-center border rounded-0">
         <%= index + 1 %>
       </span>
 
-      <span class="col-6 text-center border">
+      <span class="col-6 text-center border rounded-0">
         <%= service.name %>
       </span>
 
@@ -23,5 +23,7 @@
         <%= service.vat %>
       </span>
 
-      <span class="col-1 text-center"><%= link_to 'Edit', edit_invoice_service_path(service.invoice, service) %></span>
+      <span class="col-1 text-center">
+        <%= link_to 'Edit', edit_invoice_service_path(service.invoice, service, index: index+1) %>
+      </span>
     </div>

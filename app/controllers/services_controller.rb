@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
   before_action :set_service, only: :edit
-  before_action :setup_service, only: :new
+  before_action :setup_service, only: %i[new destroy]
 
   def new; end
 
