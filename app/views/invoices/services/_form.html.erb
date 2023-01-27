@@ -1,20 +1,27 @@
-<%= simple_form_for(@service, url: [@service.invoice, @service]) do |f| %>
-  <div class="row"
-    <div class="col">
-      <%= f.input :name %>
+<%= simple_form_for @service, url: [@service.invoice, @service], html: { class: 'flex-row' }  do |f| %>
+  <div class="row p-0">
+    <div class="col-1 px-0">
+      <%= f.input :no, label: false, input_html: { value: params[:index], class: 'p-0 mx-0 rounded-0 text-center border border-primary' } %>
     </div>
-    <div class="col">
-      <%= f.input :unit, collection: Service.units.symbolize_keys.keys, include_blank: false %>
+    <div class="col-6 px-0">
+      <%= f.input :name, label: false, input_html: { class: 'p-0 mx-0 rounded-0 text-center border border-primary' } %>
     </div>
-    <div class="col">
-      <%= f.input :price %>
+    <div class="col-1 px-0">
+      <%= f.input :unit, collection: Service.units.symbolize_keys.keys, include_blank: false,
+                          label: false, input_html: { class: 'p-0 mx-0 rounded-0 text-center border border-primary' } %>
     </div>
-    <div class="col">
-      <%= f.input :amount %>
+    <div class="col-1 px-0">
+      <%= f.input :amount, label: false, input_html: { class: 'p-0 mx-0 rounded-0 text-center border border-primary' } %>
     </div>
-    <div class="col">
-      <%= f.input :vat %>
+    <div class="col-1 px-0">
+      <%= f.input :price, label: false, input_html: { class: 'p-0 mx-0 rounded-0 text-center border border-primary' } %>
     </div>
-    <%= f.submit 'Save' %>
+    <div class="col-1 px-0">
+      <%= f.input :vat, label: false, input_html: { class: 'p-0 mx-0 rounded-0 text-center border border-primary' } %>
+    </div>
+    <div class="col-1 px-0 text-center">
+      <%= f.submit 'Save', class: 'btn btn-sm btn-outline-primary py-0' %>
+      <%= link_to 'X', @service.invoice, class: 'btn btn-sm btn-outline-primary py-0', html: { class: ' rounded-0 text-center border border-primary' } %>
+    </div>
   </div>
 <% end %>
