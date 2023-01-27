@@ -1,5 +1,5 @@
-<%= simple_form_for(@service) do |f| %>
-  <div class="row">
+<%= simple_form_for(@service, url: [@service.invoice, @service]) do |f| %>
+  <div class="row"
     <div class="col">
       <%= f.input :name %>
     </div>
@@ -15,5 +15,6 @@
     <div class="col">
       <%= f.input :vat %>
     </div>
+    <%= f.submit 'Save' %>
   </div>
 <% end %>

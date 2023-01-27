@@ -40,7 +40,7 @@
       </div>
       <% invoice.services.each.with_index do |service, index| %>
         <%= turbo_frame_tag dom_id(service) do %>
-          <%= render service, index: %>
+          <%= render 'invoices/services/service', service:, index: %>
         <% end %>
       <% end %>
     </div>

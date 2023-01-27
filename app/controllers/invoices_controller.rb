@@ -80,6 +80,10 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.find(params[:id])
   end
 
+  def set_service
+    @service = @invoice.services.find(params[:id])
+  end
+
   # Only allow a list of trusted parameters through.
   def invoice_params
     params.require(:invoice).permit(:client_id, :creation_date, :pay_until, :include_vat, :discount, :written_by,
