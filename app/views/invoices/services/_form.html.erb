@@ -1,5 +1,5 @@
 <%= simple_form_for @service, url: [@service.invoice, @service], html: { class: 'flex-row' }  do |f| %>
-  <div class="row p-0">
+  <div class="row p-0" data-controller="services-form">
     <div class="col-1 px-0">
       <%= f.input :no, label: false, input_html: { value: params[:index], class: 'p-0 mx-0 rounded-0 text-center border border-primary' } %>
     </div>
@@ -11,13 +11,25 @@
                           label: false, input_html: { class: 'p-0 mx-0 rounded-0 text-center border border-primary' } %>
     </div>
     <div class="col-1 px-0">
-      <%= f.input :amount, label: false, input_html: { class: 'p-0 mx-0 rounded-0 text-center border border-primary' } %>
+      <%= f.input :amount, label: false, input_html: { class: 'p-0 mx-0 rounded-0 text-center border border-primary',
+                                                       data: {  target: 'services-form.amountField',
+                                                                action: "change->services-form#updateTotal" } 
+                                                      }
+      %>
     </div>
     <div class="col-1 px-0">
-      <%= f.input :price, label: false, input_html: { class: 'p-0 mx-0 rounded-0 text-center border border-primary' } %>
+      <%= f.input :price, label: false, input_html: { class: 'p-0 mx-0 rounded-0 text-center border border-primary',
+                                                      data: { target: 'services-form.priceField',
+                                                              action: "change->services-form#updateTotal"  }
+                                                    }
+      %>
     </div>
     <div class="col-1 px-0">
-      <%= f.input :vat, label: false, input_html: { class: 'p-0 mx-0 rounded-0 text-center border border-primary' } %>
+      <%= f.input :total, label: false, input_html: { class: 'p-0 mx-0 rounded-0 text-center border border-primary',
+                                                      data: { target: 'services-form.totalField'} 
+                                                    }
+                  
+      %>
     </div>
     <div class="col-1 px-0 text-center">
       <%= f.submit 'Save', class: 'btn btn-sm btn-outline-primary py-0' %>

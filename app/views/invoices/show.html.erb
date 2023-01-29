@@ -2,10 +2,24 @@
 
 <%= render @invoice %>
 
-<div>
+<div action-controller="services-form" >
   <%= link_to "Edit this invoice", edit_invoice_path(@invoice) %> |
   <%= link_to "Back to invoices", invoices_path %>
   <%= link_to 'Download', invoice_path + '.pdf' %>
 
   <%= button_to "Destroy this invoice", @invoice, method: :delete %>
+
+    <button data-action="click->services-form#msg">Test</button>
+
+</div>
+
+<div data-controller="hello">
+  <input data-hello-target="name" type="text">
+
+  <button data-action="click->hello#greet">
+    Greet
+  </button>
+
+  <span data-hello-target="output">
+  </span>
 </div>
