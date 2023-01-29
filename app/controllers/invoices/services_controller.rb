@@ -32,7 +32,7 @@ module Invoices
     end
 
     def service_params
-      params.require(:service).permit(:id, :name, :price, :unit, :amount, :vat, :_destroy)
+      params.require(:service).permit(:id, :name, :price, :unit, :amount, :total, :vat, :_destroy)
     end
   end
 end

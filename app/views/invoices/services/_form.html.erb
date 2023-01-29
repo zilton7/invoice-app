@@ -13,20 +13,20 @@
     <div class="col-1 px-0">
       <%= f.input :amount, label: false, input_html: { class: 'p-0 mx-0 rounded-0 text-center border border-primary',
                                                        data: {  target: 'services-form.amountField',
-                                                                action: "change->services-form#updateTotal" } 
+                                                                action: "keyup->services-form#updateTotal" } 
                                                       }
       %>
     </div>
     <div class="col-1 px-0">
       <%= f.input :price, label: false, input_html: { class: 'p-0 mx-0 rounded-0 text-center border border-primary',
                                                       data: { target: 'services-form.priceField',
-                                                              action: "change->services-form#updateTotal"  }
+                                                              action: "keyup->services-form#updateTotal"  }
                                                     }
       %>
     </div>
     <div class="col-1 px-0">
       <%= f.input :total, label: false, input_html: { class: 'p-0 mx-0 rounded-0 text-center border border-primary',
-                                                      data: { target: 'services-form.totalField'} 
+                                                      data: { target: 'services-form.totalField'}, readonly: true
                                                     }
                   
       %>

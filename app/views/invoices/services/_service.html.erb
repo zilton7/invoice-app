@@ -20,8 +20,12 @@
       </span>
 
       <span class="col-1 text-center border">
-        <%= service.vat %>
+        <%= service.total %>
       </span>
+
+      <%# <span class="col-1 text-center border"> %>
+        <%#= service.vat %>
+      <%# </span> %>
 
       <span class="col-1 text-center">
         <%= link_to 'Edit', edit_invoice_service_path(service.invoice, service, index: index+1) %>
