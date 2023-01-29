@@ -1,32 +1,27 @@
-<%= turbo_frame_tag "service_#{f.index}" do %>
-  <%= f.hidden_field :id %>
+<%= turbo_frame_tag "service_#{service_form.index}" do %>
+  <%= service_form.hidden_field :id %>
 
   <div class="row">
     <div class="col">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= service_form.input :name %>
     </div>
     <div class="col">
-      <%= f.label :unit %>
-      <%= f.input_field :unit, collection: Service.units.symbolize_keys.keys, include_blank: false %>
+      <%= service_form.input :unit, collection: Service.units.symbolize_keys.keys, include_blank: false %>
     </div>
     <div class="col">
-      <%= f.label :price %>
-      <%= f.text_field :price %>
+      <%= service_form.input :price %>
     </div>
     <div class="col">
-      <%= f.label :amount %>
-      <%= f.text_field :amount %>
+      <%= service_form.input :amount %>
     </div>
     <div class="col">
-      <%= f.label :vat %>
-      <%= f.text_field :vat %>
+      <%= service_form.input :vat %>
     </div>
   </div>
 
-  <%= f.submit "destroy service", 
-        formaction: service_path(f.index, f.object.id), 
+  <%= service_form.submit "destroy service", 
+        formaction: service_path(service_form.index, service_form.object.id), 
         formmethod: :delete, 
         formnovalidate: true, 
-        data: { turbo_frame: "service_#{f.index}" } %>
+        data: { turbo_frame: "service_#{service_form.index}" } %>
 <% end %>

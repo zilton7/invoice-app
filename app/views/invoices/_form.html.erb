@@ -11,8 +11,8 @@
     <%= f.input :discount %>
 
     <div id="services">
-      <%= f.fields_for :services do |service_form| %>
-        <%= render "services/form", f: service_form %>
+      <%= f.simple_fields_for :services do |service_form| %>
+        <%= render "services/form", service_form: %>
       <% end %>
     </div>
 
